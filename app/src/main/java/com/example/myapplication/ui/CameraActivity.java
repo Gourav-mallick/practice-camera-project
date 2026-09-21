@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,10 @@ public class CameraActivity extends AppCompatActivity {
     private CameraViewModel cameraViewModel;
     private ExecutorService cameraExecutor;
     private ProcessCameraProvider cameraProvider;
+    private ImageButton btnSwitchCamera ;
+
+    private int cameraFacing = CameraSelector.LENS_FACING_BACK;
+
 
     private final ActivityResultLauncher<String> permissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
@@ -76,10 +81,20 @@ public class CameraActivity extends AppCompatActivity {
 
         cameraViewModel.getFps().observe(this, fps -> tvFps.setText(fps + " FPS"));
 
-        cameraViewModel.getIsStreaming().observe(this, streaming -> btnStop.setEnabled(streaming));
+        cameraViewModel.getIsStreaming().observe(this, streaming -> {
+            btnStop.setEnabled(streaming);
+            btnSwitchCamera.setEnabled(streaming);
+        });
 
         btnStop.setOnClickListener(v -> stopCamera());
         btnBack.setOnClickListener(v -> finish());
+
+        btnSwitchCamera.setOnClickListener(v -> {
+            cameraFacing = (cameraFacing == CameraSelector.LENS_FACING_BACK)
+                    ? CameraSelector.LENS_FACING_FRONT
+                    : CameraSelector.LENS_FACING_BACK;
+            startCamera();
+        });
 
         if (hasCameraPermission()) {
             startCamera();
@@ -93,6 +108,7 @@ public class CameraActivity extends AppCompatActivity {
         btnStop = findViewById(R.id.btnStop);
         btnBack = findViewById(R.id.btnBack);
         tvFps = findViewById(R.id.tvFps);
+        btnSwitchCamera=findViewById(R.id.btnSwitchCamera);
     }
 
     private boolean hasCameraPermission() {
@@ -122,7 +138,10 @@ public class CameraActivity extends AppCompatActivity {
                     imageProxy.close();
                 });
 
-                CameraSelector cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA;
+                CameraSelector cameraSelector = new CameraSelector.Builder()
+                        .requireLensFacing(cameraFacing)
+                        .build();
+
 
                 cameraProvider.unbindAll();
                 Camera camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis);

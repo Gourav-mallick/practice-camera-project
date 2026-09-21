@@ -25,6 +25,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <ImageButton
+        android:id="@+id/btnSwitchCamera"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="12dp"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:background="@drawable/bg_circle_translucent"
+        android:contentDescription="@string/switch_camera"
+        android:src="@drawable/ic_flip_camera"
+        app:layout_constraintBottom_toBottomOf="@id/previewView"
+        app:layout_constraintStart_toStartOf="@id/previewView" />
+
+
+
     <!-- Bottom half: fps, stop, back -->
     <LinearLayout
         android:layout_width="0dp"

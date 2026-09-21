@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="555"
+    android:viewportHeight="555">
+
+    <!-- Camera body with top bump -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="16"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round"
+        android:pathData="M172,144 L226,144 L239,104 L320,104 L333,144 L384,144 L384,292 L172,292 Z" />
+
+    <!-- Lens -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="16"
+        android:strokeLineJoin="round"
+        android:pathData="M254,192 L302,192 L302,240 L254,240 Z" />
+
+    <!-- Left arc -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="16"
+        android:strokeLineCap="round"
+        android:pathData="M122,263 C85,282 70,306 82,332 C102,372 190,400 286,402" />
+
+    <!-- Arrowhead -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="16"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M238,362 L288,402 L238,446" />
+
+    <!-- Right arc -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="16"
+        android:strokeLineCap="round"
+        android:pathData="M432,263 C470,282 486,306 475,332 C462,364 420,385 372,395" />
+</vector>

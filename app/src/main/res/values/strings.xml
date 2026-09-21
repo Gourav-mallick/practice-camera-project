@@ -5,4 +5,5 @@
     <string name="back">Back</string>
     <string name="fps_placeholder">-- FPS</string>
     <string name="permission_denied">Camera permission is need to use this app</string>
+    <string name="switch_camera">Switch camera</string>
 </resources>
